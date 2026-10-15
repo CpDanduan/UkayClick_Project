@@ -1,6 +1,7 @@
 # UkayClick — Thrift Store Manual Transaction System
 
-UkayClick is a Python-based inventory and transaction management application designed for small thrift stores (ukay-ukay). Built with **Streamlit**, it helps store owners organize products, record sales and expenses, review transaction history, and understand business performance from recorded data.
+UkayClick is a Python-based inventory and transaction management application designed for small thrift stores (ukay-ukay). Built with **Streamlit**, it helps store owners organize products, record sales and expenses, review transaction history, and understand business performance from recorded data. This project aims to make everyday thrift-store recordkeeping more organized by bringing inventory management, sales, expenses, and business summaries together in one application. It is intended to help small store owners monitor stock, review financial activity, and make more informed decisions based on their recorded transactions.
+
 
 The project uses **Object-Oriented Programming (OOP)** to organize core business entities and operations, and **JSON files** to persist account and business data locally.
 
@@ -152,7 +153,3 @@ Streamlit will display a local URL in the terminal. Open that URL in your browse
 - **Data persistence:** JSON files
 - **PDF export:** ReportLab
 - **Architecture:** Modular Python modules and OOP business classes
-
-## Project Purpose
-
-UkayClick aims to make everyday thrift-store recordkeeping more organized by bringing inventory management, sales, expenses, and business summaries together in one application. It is intended to help small store owners monitor stock, review financial activity, and make more informed decisions based on their recorded transactions.
