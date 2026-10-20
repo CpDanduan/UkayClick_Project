@@ -171,5 +171,3 @@ UkayClick aims to make everyday thrift-store recordkeeping more organized by bri
 ## Additionals
 
 Developer: Cristian Paul P Danduan
-Section: A221
-Course: IT102
