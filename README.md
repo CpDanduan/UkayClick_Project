@@ -167,3 +167,9 @@ Streamlit will display a local URL in the terminal. Open that URL in your browse
 ## Project Purpose
 
 UkayClick aims to make everyday thrift-store recordkeeping more organized by bringing inventory management, sales, expenses, and business summaries together in one application. It is intended to help small store owners monitor stock, review financial activity, and make more informed decisions based on their recorded transactions.
+
+## Additionals
+
+Developer: Cristian Paul P Danduan
+Section: A221
+Course: IT102
