@@ -1,7 +1,6 @@
 # UkayClick — Thrift Store Manual Transaction System
 
-UkayClick is a Python-based inventory and transaction management application designed for small thrift stores (ukay-ukay). Built with **Streamlit**, it helps store owners organize products, record sales and expenses, review transaction history, and understand business performance from recorded data. This project aims to make everyday thrift-store recordkeeping more organized by bringing inventory management, sales, expenses, and business summaries together in one application. It is intended to help small store owners monitor stock, review financial activity, and make more informed decisions based on their recorded transactions.
-
+UkayClick is a Python-based inventory and transaction management application designed for small thrift stores (ukay-ukay). Built with **Streamlit**, it helps store owners organize products, record sales and expenses, review transaction history, and understand business performance from recorded data.
 
 The project uses **Object-Oriented Programming (OOP)** to organize core business entities and operations, and **JSON files** to persist account and business data locally.
 
@@ -80,41 +79,46 @@ Methods such as `process_sale()` coordinate the validation, stock update, transa
 
 ```text
 UkayClick/
-├── danduan_ukayclick_app.py   # Main Streamlit app, pages, forms, navigation, and page logic
-├── ukayclick_inventory.py    # Product and InventoryManager classes
-├── ukayclick_sales.py        # Transaction and SalesTransaction classes; sale workflow
-├── ukayclick_expenses.py     # Expense and ExpenseManager classes
-├── ukayclick_analytics.py    # BusinessAnalyzer and business calculations
-├── ukayclick_auth.py         # User and Authentication classes
-├── ukayclick_ereceipt.py     # EReceipt generation
-├── ukayclick_storage.py      # JSON persistence and active-account data paths
-├── ukayclick_ui.py           # Shared styling and currency formatting
-├── requirements.txt          # Python package dependencies
-├── .streamlit/
-│   └── config.toml            # Streamlit theme and UI configuration
-└── data/
-    ├── users.json             # Registered user records
-    ├── accounts/              # Per-account business data directories (created at runtime)
-    │   └── <account-key>/
-    │       ├── inventory.json
-    │       ├── transactions.json
-    │       └── expenses.json
-    └── ...                    # Legacy/default data files may exist in older copies
+├── danduan_ukayclick_app.py       # Streamlit entry point
+├── controllers/
+│   └── app_controller.py          # Session state, account scope, navigation, and routing
+├── views/
+│   ├── login_view.py              # Login and account registration
+│   ├── dashboard_view.py          # Dashboard and KPIs
+│   ├── sales_view.py              # Process Sale interface
+│   ├── inventory_view.py          # Inventory management interface
+│   ├── ledger_view.py             # Ledger, search, record maintenance, and PDF export
+│   ├── ledger_helpers.py           # Ledger PDF generation
+│   ├── expenses_view.py           # Expense entry interface
+│   ├── reports_view.py             # Reports and product analysis
+│   └── common.py                  # Shared view helpers
+├── models/
+│   ├── inventory.py               # Product and InventoryManager
+│   ├── sales.py                   # Transaction classes and sale workflow
+│   ├── expenses.py                # Expense and ExpenseManager
+│   ├── analytics.py               # BusinessAnalyzer and calculations
+│   ├── auth.py                    # User and Authentication
+│   └── ereceipt.py                # EReceipt generation
+├── repositories/
+│   └── json_repository.py         # JSON persistence and account-specific data paths
+├── ukayclick_ui.py                # Shared styling and currency formatting
+├── ukayclick_*.py                 # Compatibility wrappers for older imports
+├── .gitignore
+├── .env.example
+├── ARCHITECTURE.md
+├── requirements.txt
+├── .streamlit/config.toml
+└── data/                          # Created at runtime; ignored by Git
 ```
 
 ### Module Responsibilities
 
-| Module | Responsibility |
-| --- | --- |
-| `danduan_ukayclick_app.py` | Streamlit interface, navigation, forms, dashboard, inventory, ledger, expenses, and reports pages. |
-| `ukayclick_inventory.py` | Represents products and manages inventory operations. |
-| `ukayclick_sales.py` | Defines shared transaction behavior, sale calculations, payment validation, stock deduction, and sale persistence. |
-| `ukayclick_expenses.py` | Represents expenses and validates/saves expense records. |
-| `ukayclick_analytics.py` | Calculates sales, expenses, net income, inventory summaries, and product demand. |
-| `ukayclick_auth.py` | Handles account registration and login verification. |
-| `ukayclick_ereceipt.py` | Formats sale data as an electronic receipt. |
-| `ukayclick_storage.py` | Reads and writes JSON data and selects the active account's storage directory. |
-| `ukayclick_ui.py` | Contains shared UI styling and currency formatting helpers. |
+- **Views** render the Streamlit interface for each page.
+- **Controllers** coordinate application actions, session state, account selection, and navigation.
+- **Models** contain domain objects and business rules.
+- **Repositories** handle JSON file persistence. The current prototype uses local JSON files rather than a database server.
+- **`ukayclick_ui.py`** contains shared UI styling and currency formatting helpers.
+- The root `ukayclick_*.py` modules are compatibility wrappers that preserve older import paths during the refactor.
 
 ## Installation and Running
 
@@ -153,3 +157,13 @@ Streamlit will display a local URL in the terminal. Open that URL in your browse
 - **Data persistence:** JSON files
 - **PDF export:** ReportLab
 - **Architecture:** Modular Python modules and OOP business classes
+
+## Notes and Limitations
+
+- Product demand levels are rule-based estimates based on recorded units sold; they are not generated by a machine-learning model.
+- The application stores data locally in JSON files. Multi-user separation is implemented through separate account directories, but the application has not been designed as a hardened multi-user web service.
+- Before publishing this project, remove any sample or personal data from `data/`. Do not upload real passwords, customer details, sales records, or expense information to a public repository.
+
+## Project Purpose
+
+UkayClick aims to make everyday thrift-store recordkeeping more organized by bringing inventory management, sales, expenses, and business summaries together in one application. It is intended to help small store owners monitor stock, review financial activity, and make more informed decisions based on their recorded transactions.
