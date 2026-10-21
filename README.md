@@ -102,10 +102,8 @@ UkayClick/
 ├── repositories/
 │   └── json_repository.py         # JSON persistence and account-specific data paths
 ├── ukayclick_ui.py                # Shared styling and currency formatting
-├── ukayclick_*.py                 # Compatibility wrappers for older imports
 ├── .gitignore
 ├── .env.example
-├── ARCHITECTURE.md
 ├── requirements.txt
 ├── .streamlit/config.toml
 └── data/                          # Created at runtime; ignored by Git
@@ -118,7 +116,6 @@ UkayClick/
 - **Models** contain domain objects and business rules.
 - **Repositories** handle JSON file persistence. The current prototype uses local JSON files rather than a database server.
 - **`ukayclick_ui.py`** contains shared UI styling and currency formatting helpers.
-- The root `ukayclick_*.py` modules are compatibility wrappers that preserve older import paths during the refactor.
 
 ## Installation and Running
 
